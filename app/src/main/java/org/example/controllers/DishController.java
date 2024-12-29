@@ -13,12 +13,19 @@ public class DishController {
     public DishController() {
         this.restaurantService = new RestaurantService();
         this.dishSubject = new SubjectImplementation<>();
-        this.dishSubject.attach(new ConsoleNotificationObserver<>());
         this.dishService = new DishService();
     }
 
     public void attachObserver(Observer<Dish> observer) {
         dishService.attachObserver(observer);
+    }
+
+    public void attachORemovebserver(Observer<Dish> observer) {
+        dishService.attachORemovebserver(observer);
+    }
+
+    public void attachEditObserver(Observer<Dish> observer) {
+        dishService.attachEditObserver(observer);
     }
 
     public void addDishToMenu(String restaurantName, String menuName, Dish dish) {
@@ -27,6 +34,20 @@ public class DishController {
 
     public Dish findDish(String restaurantName, String menuName, String dishName) {
         return dishService.findDish(restaurantName, menuName, dishName);
+    }
+
+    public void editDishInMenu(String restaurantName, String menuName, String dishName,
+                               String newDishName, Double newPrice) {
+        dishService.editDishInMenu(restaurantName, menuName, dishName, newDishName, newPrice);
+    }
+
+    public void removeDishFromMenu(String restaurantName, String menuName, String dishName) {
+        dishService.removeDishFromMenu(restaurantName, menuName, dishName);
+    }
+
+
+    public void editDish(String restaurantName, String menuName, String dishName, String newDishName, Double price) {
+        dishService.editDish(restaurantName, menuName, dishName, newDishName, price);
     }
 
 

@@ -21,19 +21,4 @@ public abstract class Review implements Subject {
     public String getComment() { return comment; }
     public String getName() { return name; }
 
-    // Implementación de ReviewSubject
-//    @Override
-//    public void attach(ReviewObserver observer) {
-//        observers.add(observer);
-//    }
-//
-//    @Override
-//    public void detach(ReviewObserver observer) {
-//        observers.remove(observer);
-//    }
-
-//    @Override
-//    public void notify(Review review) {
-//        observers.forEach(observer -> observer.update(review));
-//    }
 }

@@ -35,6 +35,12 @@ public class RestaurantRepository implements IRepository<Restaurant> {
 
     @Override
     public Restaurant findByName(String name) {
+        if (name == null || name.isEmpty()) {
+            return restaurants.values().stream()
+                    .filter(restaurant -> restaurant.getName().isEmpty())
+                    .findFirst()
+                    .orElse(null);
+        }
         return restaurants.get(name);
     }
 

@@ -32,6 +32,6 @@ public class AddMenuToRestaurantCommand implements ICommand {
 
         Menu menu = menuFactory.createMenu(menuName, new ArrayList<>());
         menuController.addMenuToRestaurant(restaurantName, menu);
-        handler.writeLine("Menu agregado exitosamente.");
+
     }
 }

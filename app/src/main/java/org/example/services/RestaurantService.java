@@ -8,25 +8,77 @@ import java.util.List;
 
 public class RestaurantService {
     private final RestaurantRepository restaurantRepository;
-    private final Subject<Restaurant> restaurantSubject;
+    private final Subject<Restaurant> newRestaurantSubject;
+    private final Subject<Restaurant> editRestaurantSubject;
+    private final Subject<Restaurant> removeRestaurantSubject;
 
 
     public RestaurantService() {
         this.restaurantRepository = RestaurantRepository.getInstance();
-        this.restaurantSubject = new SubjectImplementation<>();
+        this.newRestaurantSubject = new SubjectImplementation<>();
+        this.editRestaurantSubject = new SubjectImplementation<>();
+        this.removeRestaurantSubject = new SubjectImplementation<>();
     }
 
-    public void attachObserver(Observer<Restaurant> observer) {
-        restaurantSubject.attach(observer);
+
+
+    public void attachNewRestaurantObserver(Observer<Restaurant> observer) {
+        newRestaurantSubject.attach(observer);
     }
+
+    public void attachEditRestaurantObserver(Observer<Restaurant> observer) {
+        editRestaurantSubject.attach(observer);
+    }
+
+    public void attachRemoveRestaurantObserver(Observer<Restaurant> observer) {
+        removeRestaurantSubject.attach(observer);
+    }
+
+
+
+
 
     public void addRestaurant(String restaurantName, String restaurantAddress) {
         Restaurant restaurant = new Restaurant(restaurantName, restaurantAddress);
         restaurantRepository.save(restaurant);
-        restaurantSubject.notify(restaurant);
-
+        newRestaurantSubject.notify(restaurant);
 
     }
+
+    public void removeRestaurant(String restaurantName) {
+        Restaurant restaurant = restaurantRepository.findByName(restaurantName);
+        if (restaurant != null) {
+            restaurantRepository.delete(restaurantName);
+            removeRestaurantSubject.notify(restaurant);
+        }
+    }
+
+    public void editRestaurant(String restaurantName, String newRestaurantName, String restaurantAddress) {
+        Restaurant restaurant = restaurantRepository.findByName(restaurantName);
+        if (restaurant != null) {
+
+            if ("eliminar".equalsIgnoreCase(newRestaurantName)) {
+                newRestaurantName = "";
+            } else if (newRestaurantName == null || newRestaurantName.trim().isEmpty()) {
+                newRestaurantName = restaurant.getName();
+            }
+
+            if ("eliminar".equalsIgnoreCase(restaurantAddress)) {
+                restaurantAddress = " ";
+            } else if (restaurantAddress == null || restaurantAddress.trim().isEmpty()) {
+                restaurantAddress = restaurant.getAddress();
+            }
+            restaurantRepository.delete(restaurantName);
+            restaurant.setName(newRestaurantName);
+            restaurant.setAddress(restaurantAddress);
+            restaurantRepository.save(restaurant);
+            editRestaurantSubject.notify(restaurant);
+        } else {
+            System.out.println("Restaurante no encontrado.");
+        }
+    }
+
+
 
     public List<Restaurant> showRestaurants() {
         System.out.println("+--- Restaurantes ---+");

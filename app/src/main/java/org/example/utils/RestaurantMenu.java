@@ -37,7 +37,7 @@ public class RestaurantMenu {
     }
 
     public void displayMenu() {
-        handler.writeLine("Bienvenido al Review de restaurantes");
+        handler.writeLine(" +--- Bienvenido al Review de restaurantes ---+ ");
 
         while (true) {
             handler.writeLine("\nSelecciona una opcion:");
@@ -47,6 +47,9 @@ public class RestaurantMenu {
             handler.writeLine("4. Agregar Plato a Menu");
             handler.writeLine("5. Agregar Review a Restaurante");
             handler.writeLine("6. Agregar Review a Plato");
+            handler.writeLine("7. Editar Restaurante");
+            handler.writeLine("8. Eliminar Restaurante");
+            handler.writeLine("9. Editar Menu");
             handler.writeLine("0. Salir");
 
             int option;
