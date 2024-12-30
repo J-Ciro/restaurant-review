@@ -42,7 +42,6 @@ public class AddDishToMenuCommand implements ICommand {
 
         Dish dish = dishFactory.createDish(dishName, price);
         dishController.addDishToMenu(restaurantName, menuName, dish);
-        handler.writeLine("Plato agregado exitosamente.");
     }
 
 }

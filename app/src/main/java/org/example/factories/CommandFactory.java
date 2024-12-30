@@ -5,6 +5,9 @@ import org.example.commands.AddMenuToRestaurantCommand;
 import org.example.commands.AddRestaurantCommand;
 import org.example.commands.AddReviewToDishCommand;
 import org.example.commands.AddReviewToRestaurantCommand;
+import org.example.commands.EditMenuRestaurant;
+import org.example.commands.EditRestaurantCommand;
+import org.example.commands.RemoveRestuarantCommand;
 import org.example.controllers.DishController;
 import org.example.controllers.MenuController;
 import org.example.controllers.RestaurantController;
@@ -42,6 +45,9 @@ public class CommandFactory {
             case 4 -> new AddDishToMenuCommand(dishController, handler, dishFactory);
             case 5 -> new AddReviewToRestaurantCommand(restaurantController, reviewController, handler, reviewFactory);
             case 6 -> new AddReviewToDishCommand(restaurantController,dishController, reviewController,handler, reviewFactory);
+            case 7 -> new EditRestaurantCommand(restaurantController, handler);
+            case 8 -> new RemoveRestuarantCommand(restaurantController, handler);
+            case 9 -> new EditMenuRestaurant(menuController, dishController, handler);
             default -> null;
         };
     }

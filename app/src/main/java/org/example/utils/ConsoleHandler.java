@@ -10,7 +10,6 @@ public class ConsoleHandler implements IHandler{
         this.scanner = new Scanner(System.in);
     }
 
-
     @Override
     public String readLine() {
         return scanner.nextLine();

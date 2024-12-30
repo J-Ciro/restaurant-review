@@ -62,6 +62,6 @@ public class AddReviewToDishCommand implements ICommand {
 
         Review review = reviewFactory.createReview("dish", dishName, stars, comment, null);
         reviewController.addReviewToDish(restaurantName, menuName, dishName, (DishReview) review);
-        handler.writeLine("Review agregada exitosamente.");
+
     }
 }

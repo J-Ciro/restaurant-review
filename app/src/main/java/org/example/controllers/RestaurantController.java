@@ -14,8 +14,24 @@ public class RestaurantController {
 
     }
 
-    public void attachObserver(Observer<Restaurant> observer) {
-        restaurantService.attachObserver(observer);
+    public void attachNewRestaurantObserver(Observer<Restaurant> observer) {
+        restaurantService.attachNewRestaurantObserver(observer);
+    }
+
+    public void attachEditRestaurantObserver(Observer<Restaurant> observer) {
+        restaurantService.attachEditRestaurantObserver(observer);
+    }
+
+    public void attachRemoveRestaurantObserver(Observer<Restaurant> observer) {
+        restaurantService.attachRemoveRestaurantObserver(observer);
+    }
+
+    public void removeRestaurant(String restaurantName) {
+        restaurantService.removeRestaurant(restaurantName);
+    }
+
+    public void editRestaurant(String restaurantName,String newRestaurantName, String restaurantAddress) {
+        restaurantService.editRestaurant(restaurantName,newRestaurantName ,restaurantAddress);
     }
 
     public void addRestaurant(String restaurantName, String restaurantAddress) {

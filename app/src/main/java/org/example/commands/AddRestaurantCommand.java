@@ -22,7 +22,7 @@ public class AddRestaurantCommand implements ICommand {
         String address = handler.readLine();
 
         restaurantController.addRestaurant(name, address);
-        handler.writeLine("Restaurante agregado exitosamente.");
+
     }
 }
 
